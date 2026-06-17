@@ -1,0 +1,42 @@
+# Example config for generate-tag.py
+# Run: python3 generate-tag.py configs/config.yaml
+
+# Path/command to the OpenSCAD binary. Omit to auto-detect on PATH.
+# openscad: openscad
+
+# Geometry engine. "manifold" is far faster than the default CGAL backend but
+# needs OpenSCAD 2023.06+ (the installed 2021.01 will reject --backend). Omit
+# on older builds. Uncomment once you've upgraded:
+# backend: manifold
+
+# Renders are cached by template contents + variables + backend, so an
+# unchanged tag is restored instead of re-rendered. Set to false to disable.
+# Note: an icon's *contents* aren't hashed -- change the icon config or clear
+# this dir after editing an SVG to force a re-render.
+# cache_dir: .taggen-cache
+
+# These all have defaults, so they're optional. The SCAD template and output
+# directory default to scripts/dados-tag.scad and output/stl, and output_name
+# defaults to a slug of the name (here "john-doe" -> output/stl/john-doe.stl).
+# template: scripts/dados-tag.scad
+# output_dir: output/stl
+# output_name: john-doe
+
+name: John
+last-name: Doe
+
+qr_action: "Wa" # Tx | URL | Wa | Te | Email | SMS | Call
+phone_number: "+5511999999999" # lines 4/5 derived: "+55" / "(11) 99999-9999"
+email: "john.doe@example.com" # becomes line 6
+
+icon: "travel-svgrepo-com.svg" # name in icons/, a direct path, or false to disable
+
+# The name (lines 1/2) and the email (line 6) are auto-sized to span the tag
+# width (max size 33); lines 1 and 2 share one size, driven by the longer name.
+# The phone lines (4/5) use the template's default sizes (33 / 25). Add
+# size_line_4/5/6 here, or SIZE_TEXT_LINE_1/2 under extra, to override.
+
+# Optional: override any other raw SCAD variable verbatim (wins over the above)
+extra: {}
+#   Tag_Size: "L"
+#   QR_SIZE: 50
