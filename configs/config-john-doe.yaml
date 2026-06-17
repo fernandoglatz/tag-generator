@@ -29,6 +29,11 @@ qr_action: "Wa" # Tx | URL | Wa | Te | Email | SMS | Call
 phone_number: "+5511999999999" # lines 4/5 derived: "+55" / "(11) 99999-9999"
 email: "john.doe@example.com" # becomes line 6
 
+# Optional: text embedded in the QR payload -- e.g. the WhatsApp message body
+# (qr_action "Wa") or the displayed text (qr_action "Tx"). Omit to keep the
+# template's default ("Encontrei sua mala!").
+# qr_message: "I found your bag!"
+
 icon: "travel-svgrepo-com.svg" # name in icons/, a direct path, or false to disable
 
 # The name (lines 1/2) and the email (line 6) are auto-sized to span the tag

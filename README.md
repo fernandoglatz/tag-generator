@@ -148,6 +148,7 @@ them by name. Key fields:
 |-------|---------|
 | `name` / `last-name` | First two text lines; auto-sized to fit (max 33), both sharing the longer one's size |
 | `qr_action` | `Tx`, `URL`, `Wa`, `Te`, `Email`, `SMS`, `Call` |
+| `qr_message` | Optional text embedded in the QR payload (e.g. the WhatsApp message body); defaults to the template's value |
 | `phone_number` | Brazilian number; derives line 4 (`+CC`) and line 5 (`(DD) XXXXX-XXXX`) |
 | `email` | Becomes text line 6 |
 | `size_line_4/5/6` | Optional override for the derived-line sizes (the email auto-fits the QR width; the phone lines use the template defaults 33 / 25) |

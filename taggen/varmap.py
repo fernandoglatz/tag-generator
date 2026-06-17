@@ -66,6 +66,12 @@ def build_scad_vars(config, icon_vars=None):
     if config.get("size_line_5") is not None:
         scad_vars["SIZE_TEXT_LINE_5"] = config["size_line_5"]
 
+    # The QR message (the template's ``Text``) is embedded in the scanned
+    # payload -- e.g. the WhatsApp ``?text=`` body. Only override it when the
+    # config asks; otherwise the template's default applies.
+    if config.get("qr_message") is not None:
+        scad_vars["Text"] = config["qr_message"]
+
     scad_vars.update(icon_vars or {})
     scad_vars.update(config.get("extra") or {})
     return scad_vars

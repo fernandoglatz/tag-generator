@@ -94,6 +94,27 @@ def test_explicit_phone_line_sizes_are_emitted():
     assert v["SIZE_TEXT_LINE_5"] == 30
 
 
+def test_qr_message_not_emitted_by_default():
+    # Without qr_message the template's default Text applies.
+    v = build_scad_vars(sample_config())
+    assert "Text" not in v
+
+
+def test_qr_message_maps_to_text():
+    config = sample_config()
+    config["qr_message"] = "I found your bag!"
+    v = build_scad_vars(config)
+    assert v["Text"] == "I found your bag!"
+
+
+def test_extra_overrides_qr_message():
+    config = sample_config()
+    config["qr_message"] = "from qr_message"
+    config["extra"] = {"Text": "from extra"}
+    v = build_scad_vars(config)
+    assert v["Text"] == "from extra"
+
+
 def test_hide_tag_defaults_false():
     v = build_scad_vars(sample_config())
     assert v["HIDE_TAG"] is False
